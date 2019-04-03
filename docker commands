@@ -1,0 +1,109 @@
+1. Command to check the created docker images are up or not
+
+sudo docker ps -a  
+
+2. Command to make the moviedb up locally using docker image(PORT Mapping Command)
+
+sudo docker run -d -p 6603:33060 --network=host -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=moviedb -e MYSQL_USER=app_root -e MYSQL_PASSWORD=root mysql:latest
+
+2.a Command to run the running database
+
+sudo docker exec -it <IMAGE_ID> bash
+
+2.b Providing the username
+
+mysql -u<USER_NAME> -p
+
+eg: mysql -uroot -p   ---> after that enter the password
+
+2.c Command to check the existing databases
+
+show databases;
+
+3. Command to check issue with creted docker image
+
+sudo docker <IMAGE_ID> logs
+
+4. Command to test whether port number is consumed by any application
+
+sudo netstat -antlp | grep <PORT_NUMBER>
+
+5. Command to stop the running process using process name
+
+sudo pkill <PROCESS_NAME>
+
+6. Command to build the image using docker file
+
+sudo docker build -t test-spring .   [test-spring is the image name. This needs to run only for first time]
+
+7. Command to find the running docker images
+
+sudo docker images
+
+8. Command to run the created container
+
+sudo docker run --name spring-app --network=host <IMAGE_NAME> [This also needs to run only for one time]
+
+eg. sudo docker run --name spring-app --network=host test-spring 
+
+8. Command to stop the running docker image
+
+sudo docker stop <IMAGE_ID>
+
+9. Command to start the stopped docker image
+
+sudo docker start <IMAGE_ID>
+
+10. Command to remove the running docker image
+
+sudo docker rm <IMAGE_ID>
+
+11. Command to check whether mysql is in running status
+
+sudo service mysql status
+
+12. To stop the service 
+
+sudo service mysql stop
+
+-----------------------------------------------------------------
+13. Command to build the angular image
+
+sudo docker build -t test-angular .
+
+14. Command to run the Angular docker image
+
+sudo docker run -d -p 4200:4200 --network=host test-angular
+
+-----------------------------------------------------------------
+15. Command to run the application using docker-compose
+
+sudo docker-compose up
+
+16. To stop all the images inside docker-compose simply use 'Ctrl+C'
+
+17. To delete all the docker-compose images 
+
+sudo docker-compose down
+
+-------------------------------------------------------------------------------------
+Pushing docker images to Docker-Hub
+
+1. For this first need to login to DockerHub using the created UserName/Password
+
+sh login.sh
+
+2. Command to tag docker image to Docker hub
+
+sudo docker tag <IMAGE_ID> <DOCKERHUBCREATEDNAME>:<IMAGE_NAME_WISH_TO_GIVEN>
+
+eg: sudo docker tag 0D06E341djhd diasjacob07/moviecruiser:spring-image
+
+3. Pushing the IMAGE to Docker-Hub
+
+sudo docker push diasjacob07/moviecruiser
+
+Docker Hub UserId : diasjacob07
+Docker Hub Password : jacobdias07#
+--------------------------------------------------------------------------------------
+
